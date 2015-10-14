@@ -31,11 +31,7 @@
 			return routeMap[Object.getOwnPropertyNames(routeMap)[index]];
 		};
 
-		var api = {
-			routes: routes,
-		}
-
-		return api;
+		return routes;
 	}
 
 	window['jhmvc'].addModule('RouteManager', RouteManager());

@@ -1,5 +1,7 @@
 (function(){
 
+	jhmvc.getModule('TemplateManager').rootLocation('demo/views/');
+
 	// console.log('Creating default controller...');
 	var defaultController = function(model) {
 		model.message = "Hello world";
@@ -11,8 +13,8 @@
 	}
 
 	var rm = jhmvc.getModule('RouteManager');
-	rm.routes.add(defaultController, 'default', 'views/default.html');
-	rm.routes.add(aboutController, 'about', 'views/about.html');
+	rm.add(defaultController, 'default', 'default.html');
+	rm.add(aboutController, 'about', 'about.html');
 
 	jhmvc.init();
 })();

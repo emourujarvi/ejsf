@@ -3,11 +3,23 @@
 	var TemplateManager = function() {
 		var name = "TemplateManager";
 		var templateMap = { };
+		var _rootLocation = '';
 
 		var templates = {};
 
+		templates.rootLocation = function rootLocation(root) {
+			if (typeof root === 'undefined') {
+				return _rootLocation;
+			} else {
+				_rootLocation = root;
+				return _rootLocation;
+			}
+		}
+
 		// TODO Make this use promises instead of callback
+		// Should this use the same method as above?
 		templates.get = function get(key, cb) {
+			key = _rootLocation + key;
 			if (key in templateMap) {
 				cb(templateMap[key]);
 			} else {
@@ -32,7 +44,8 @@
 		};
 
 		var api = {
-			get: templates.get
+			get: templates.get,
+			rootLocation: templates.rootLocation
 		};
 
 		return api;

@@ -32,7 +32,7 @@
 	var bootstrap = function() {
 		var pageHash = w.location.hash.replace('#', '');
 		var routeName = pageHash.replace('/', '');
-		var route = getModule('RouteManager').routes.get(routeName);
+		var route = getModule('RouteManager').get(routeName);
 
 		if (!route) {
 			route = _defaultRoute;
@@ -50,7 +50,7 @@
 			return;
 		}
 
-		_defaultRoute = getModule('RouteManager').routes.getIndex(0);
+		_defaultRoute = getModule('RouteManager').getIndex(0);
 
 		window.onhashchange = delegate;
 		delegate();
