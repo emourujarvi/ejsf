@@ -11,8 +11,8 @@
 	}
 
 	// console.log('Adding default route...');
-	jhmvc.addRoute(defaultController, 'default', 'views/default.html');
-	jhmvc.addRoute(aboutController, 'about', 'views/about.html');
+	jhmvc.routeManager.routes.add(defaultController, 'default', 'views/default.html');
+	jhmvc.routeManager.routes.add(aboutController, 'about', 'views/about.html');
 	// console.log('Initializing emvc...');
 
 	jhmvc.init();

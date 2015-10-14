@@ -1,23 +1,59 @@
 ; (function(w, d, undefined) {
+
+	var RouteManager = function() {
+		var name = "routemanager";
+		var _routeMap = {};
+
+		var routes = {};
+
+		routes.create = function create(c, r, t) {
+			return {
+				controller: c,
+				route: r,
+				template: t
+			}
+		};
+
+		routes.add = function add(c, r, t) {
+			var rr = routes.create(c, r, t);
+			_routeMap[r] = rr;
+		};
+
+		routes.get = function get(r) {
+			return _routeMap[r];
+		};
+
+		routes.set = function set(r) {
+			_routeMap[r.route] = r;
+		};
+
+		routes.getIndex = function getIndex(index) {
+			return _routeMap[Object.getOwnPropertyNames(_routeMap)[index]];
+		};
+
+		var api = {
+			routes: routes,
+		}
+
+		return api;
+	}
+
 	console.log('Loading mvc...');
 
+	var _routeManager = RouteManager();
 	var _viewElement = null;
 	var _defaultRoute = null;
 
-	var route = function(c, r, t) {
-		this.controller = c;
-		this.route = r;
-		this.template = t;
+	function mvc() {
+
 	};
 
-	var mvc = function() {
-		this._routeMap = {};
-	};
+	mvc.prototype.routeManager = _routeManager;
 
 	var bootstrap = function() {
 		var pageHash = w.location.hash.replace('#', '');
 		var routeName = pageHash.replace('/', '');
-		var route = this._routeMap[routeName];
+		var route = _routeManager.routes.get(routeName);
 
 		if (!route) {
 			route = _defaultRoute;
@@ -26,11 +62,6 @@
 
 		loadTemplate(route, _viewElement, pageHash);
 	}
-
-	mvc.prototype.addRoute = function(c, r, t) {
-		var rr = new route(c, r, t);
-		this._routeMap[r] = rr;
-	};
 
 	mvc.prototype.init = function() {
 		var delegate = bootstrap.bind(this);
@@ -41,7 +72,7 @@
 			return;
 		}
 
-		_defaultRoute = this._routeMap[Object.getOwnPropertyNames(this._routeMap)[0]];
+		_defaultRoute = _routeManager.routes.getIndex(0);
 
 		window.onhashchange = delegate;
 		delegate();
