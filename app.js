@@ -10,10 +10,9 @@
 		model.year = "2015";
 	}
 
-	// console.log('Adding default route...');
-	jhmvc.routeManager.routes.add(defaultController, 'default', 'views/default.html');
-	jhmvc.routeManager.routes.add(aboutController, 'about', 'views/about.html');
-	// console.log('Initializing emvc...');
+	var rm = jhmvc.getModule('RouteManager');
+	rm.routes.add(defaultController, 'default', 'views/default.html');
+	rm.routes.add(aboutController, 'about', 'views/about.html');
 
 	jhmvc.init();
 })();
