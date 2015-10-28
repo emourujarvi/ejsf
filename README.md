@@ -31,6 +31,9 @@ An ugly demo can be found from index.html ( which uses demo/ folder ).
 (function(){
 	jhmvc.getModule('RouteManager').add(function(model) {
 		model.message = "Hello world";
+		model.fn = {
+			hi: function() { alert(model.message); }
+		};
 	}, 'defaultPage', 'default.html');
 
 	jhmvc.init();
@@ -40,5 +43,6 @@ An ugly demo can be found from index.html ( which uses demo/ folder ).
 #####default.html#####
 ```html
 <!-- {{message}} will be replaced by controller's model.message -->
-Hi? {{message}}
+Hi? {{message}}<br/>
+<span click-fn="hi">Click me for alert</span>
 ```
