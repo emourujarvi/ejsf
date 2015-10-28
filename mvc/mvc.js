@@ -50,6 +50,8 @@
 			return;
 		}
 
+		_viewElement.removeAttribute('view');
+
 		_defaultRoute = getModule('RouteManager').getIndex(0);
 
 		window.onhashchange = delegate;
@@ -68,6 +70,16 @@
 		route.controller(model);
 		viewHtml = replaceToken(viewHtml, model);
 		viewElement.innerHTML = viewHtml;
+
+		var clicks = viewElement.querySelectorAll('[click-fn]');
+
+		for (var i = 0; i < clicks.length; ++i) {
+			var c = clicks[i];
+			var attr = c.getAttribute('click-fn');
+			var fn = model.fn[attr];
+			c.onclick = fn;
+			c.removeAttribute('click-fn');
+		}
 	};
 
 	var replaceToken = function(viewHtml, model) {
