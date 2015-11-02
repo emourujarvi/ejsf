@@ -1,4 +1,5 @@
 ; (function(w, d, undefined) {
+'use strict';
 
 	console.log('Loading mvc...');
 
@@ -71,15 +72,7 @@
 		viewHtml = replaceToken(viewHtml, model);
 		viewElement.innerHTML = viewHtml;
 
-		var clicks = viewElement.querySelectorAll('[click-fn]');
-
-		for (var i = 0; i < clicks.length; ++i) {
-			var c = clicks[i];
-			var attr = c.getAttribute('click-fn');
-			var fn = model.fn[attr];
-			c.onclick = fn;
-			c.removeAttribute('click-fn');
-		}
+		getModule('ComponentManager').handle(viewElement, model);
 	};
 
 	var replaceToken = function(viewHtml, model) {

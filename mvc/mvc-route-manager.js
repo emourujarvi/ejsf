@@ -1,4 +1,5 @@
 ; (function(w, d, undefined) {
+'use strict';
 
 	var RouteManager = function() {
 		var name = "RouteManager";

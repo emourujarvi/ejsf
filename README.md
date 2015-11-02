@@ -22,6 +22,9 @@ An ugly demo can be found from index.html ( which uses demo/ folder ).
 <script type="text/javascript" src="mvc/mvc-route-manager.js"></script>
 <script type="text/javascript" src="mvc/mvc-template-manager.js"></script>
 
+<script type="text/javascript" src="mvc/mvc-component-manager.js"></script>
+<script type="text/javascript" src="mvc/components/mvc-component-click-fn.js"></script>
+
 <!-- app -->
 <script type="text/javascript" src="demo/app.js"></script>
 ```
