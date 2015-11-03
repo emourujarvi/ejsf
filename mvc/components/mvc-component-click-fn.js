@@ -1,9 +1,8 @@
 ; (function(w, d, undefined) {
 'use strict';
+	var name = 'click-fn';
 
 	var ClickComponent = function(viewElement, model) {
-		var name = 'click-fn';
-
 		var clicks = viewElement.querySelectorAll('[' + name + ']');
 
 		for (var i = 0; i < clicks.length; ++i) {
@@ -14,6 +13,6 @@
 		}
 	}
 
-	window['jhmvc'].getModule('ComponentManager').set('click-fn', ClickComponent);
+	window['jhmvc'].getModule('ComponentManager').set(name, ClickComponent);
 
 }(window, document));

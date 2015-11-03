@@ -12,6 +12,9 @@
 			},
 			clickYou: function() {
 				alert('you! default!');
+			},
+			inputContains: function() {
+				console.log(model);
 			}
 		}
 	}
