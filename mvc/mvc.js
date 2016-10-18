@@ -28,9 +28,8 @@
 
 
 	/** Base logic **/
-	// TODO Move this somewhere? Or change how routes & templates are accessed & views are compiled?
-
-	var bootstrap = function() {
+	// TODO Move most of these somewhere else? Or change how routes & templates are accessed & views are compiled?
+	var loadCurrentTemplate = function() {
 		var pageHash = w.location.hash.replace('#', '');
 		var routeName = pageHash.replace('/', '');
 		var route = getModule('RouteManager').get(routeName);
@@ -40,6 +39,10 @@
 		}
 
 		loadTemplate(route, _viewElement, pageHash);
+	}
+
+	var bootstrap = function() {
+		loadCurrentTemplate();
 	};
 
 	mvc.prototype.init = function() {
@@ -58,6 +61,10 @@
 		window.onhashchange = delegate;
 		delegate();
 	};
+
+	mvc.prototype.reloadTemplate = function() {
+		loadCurrentTemplate();
+	}
 
 	var loadTemplate = function(route, element) {
 		getModule('TemplateManager').get(route.template, function(template) {
