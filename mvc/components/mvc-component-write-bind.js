@@ -44,12 +44,13 @@
 		var elems = viewElement.querySelectorAll('[' + name + ']');
 
 		for (var i = 0; i < elems.length; ++i) {
-			var e = elems[i];
-			var attr = e.getAttribute(name);
-
-			e.onchange = e.oninput = function() {
-				updateModel(model, attr, e.value);
-			};
+			(function () {
+				var e = elems[i];
+				var attr = e.getAttribute(name);
+				e.onchange = e.oninput = function() {
+					updateModel(model, attr, e.value);
+				};
+			}());
 		}
 	}
 

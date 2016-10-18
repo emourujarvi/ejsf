@@ -6,10 +6,12 @@
 		var clicks = viewElement.querySelectorAll('[' + name + ']');
 
 		for (var i = 0; i < clicks.length; ++i) {
-			var c = clicks[i];
-			var attr = c.getAttribute(name);
-			c.onclick = model.fn[attr];
-			c.removeAttribute(name);
+			(function () {
+				var c = clicks[i];
+				var attr = c.getAttribute(name);
+				c.onclick = model.fn[attr];
+				c.removeAttribute(name);
+			}());
 		}
 	}
 
