@@ -1,15 +1,16 @@
-An attempt to learn javascript by building a framework.
-Work in progress.
+An attempt to learn javascript by building a simplistic framework. A demo can be found from index.html ( which uses demo/ folder ). 
 
-An ugly demo can be found from index.html ( which uses demo/ folder ).
+Plans exist to convert this to use typescript / es6.
 
-###Currently has:###
+Currently has:
 - XRH Template Loading with lazy cache
 - Template compile for static values
+- Rather simple binding between html nodes and js controller
 
-###Usage###
 
-#####index.html#####
+Usage:
+
+index.html
 ```html
 <!-- element with 'view' attribute will have its content replaced by routed template -->
 <div view>this will be replaced</div>
@@ -29,7 +30,7 @@ An ugly demo can be found from index.html ( which uses demo/ folder ).
 <script type="text/javascript" src="demo/app.js"></script>
 ```
 
-#####app.js#####
+app.js
 ```js
 (function(){
 	jhmvc.getModule('RouteManager').add(function(model) {
@@ -43,7 +44,7 @@ An ugly demo can be found from index.html ( which uses demo/ folder ).
 })();
 ```
 
-#####default.html#####
+default.html
 ```html
 <!-- {{message}} will be replaced by controller's model.message -->
 Hi? {{message}}<br/>
